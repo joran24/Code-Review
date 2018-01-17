@@ -104,6 +104,7 @@
   // IndexOf works like a for loop and thus the algorithim exists as a
   // nested for loop which is indicative of two linear operations sqr'd.
   // https://medium.freecodecamp.org/time-is-complex-but-priceless-f0abd015063c
+  /*
   _.uniq = function(array) {
     var results = [];
 
@@ -131,12 +132,15 @@ _.uniq = function(array) {
   return results;
 };
 
-// Alternate using _.each implementation
-_.uniq = function(array) {
-  var unique = {}, results = [];
+*/
 
-  _.each(array, function(item) {
-    unique[item] = item;
+// Alternate using _.each implementation
+_.uniq = function(array, isSorted, iterator) {
+  var unique = {}, results = [];
+  var iterator = iterator || _.identity;
+
+  _.each(array, function(element) {
+    unique[iterator(element)] === undefined && (unique[iterator(element)] = element);
   });
 
   _.each(unique, function(value) {
